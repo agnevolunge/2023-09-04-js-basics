@@ -24,7 +24,7 @@ let yraStudentas = true // Boolean (true/false duomenu tipas). jei padarom tarpa
 
 // KINTAMUJU PAVADINIMUOSE NEGALI BUTI SPECIALIUJU ZODELIU. GOOGLE "RESERVED WORD" - SARASAS TU ZODELIU.
 
-const asmensKodas = 486049180145 // Number (skaicius) duomenu tipas
+const asmensKodas = 486049180145 // Number (skaicius) duomenu tipas. Reiksmes keisti negalima
 
 console.log(vardas)
 console.log(pavarde)
@@ -60,8 +60,7 @@ console.log('John said: "Good morning".')
 console.log(`John said: "Good morning".`)
 
 // John said: "That's my car".
-console.log(`John said: "That's my car".
-`)
+console.log(`John said: "That's my car".`)
 
 // John `said`: "That's my car"
 console.log('John `said`: ' + `"That's my car".`)
@@ -89,9 +88,8 @@ console.groupEnd()
 console.log('uz grupes')
 
 
-console.group('Math Operators')
+console.groupCollapsed('Math Operators')
 
-console.groupCollapsed('MathOperators')
 // Matematiniai operatoriai
 
 let num1 = 22
@@ -107,22 +105,39 @@ console.log(num1 % num2) //liekana. 22/10 liekana 2
 console.log(num1 + num2 * num2)
 console.log((num1 + num2) * num2)
 
-console.log(22 +'10') //jei padauginame du stringus, kurie yra skaiciai gaunasi skaiciai vienas salia kito, ne taip kaip tikimes pvz cia ats 2210
+console.log(22 +'10') //jei sudedame skaiciu ir stringa, o stringas yra skaicius, gaunasi skaiciai vienas salia kito, ne taip kaip tikimes pvz cia ats 2210
+
+console.log(num1 - num3)
+console.log(num1 * num3)
+console.log(num1 / num3)
+console.log(num1 % num3) //skaiciaus ir stringo, kuris yra skaicius neveikia taip kaip tikimes TIK sudetis, atimtis, dalyba, daugyba - veikia iprastai.
+
+//jei yra galimybe, reikia VENGTI atlikti matematinius veiksmus su stringais ir skaiciais, reiketu juos atlikti tik su skaiciais. 
+
+console.log('labas' * 5) //ats yra NaN - not a number 
 
 console.groupEnd()
 
+
+console.group('Conditions')
+
 //SALYGOS - CONDITIONS. 
+
+//viena lygybe programavime naudojama TIK kintamojo reiksmes priskyrimui.
+
 // Dviguba lygybė (loosely equal ==): tikrina TIK reikšmes ir nekreipia dėmesio į duomenų tipą.
 console.log(10==10) //true
 console.log('vienas' == 'vienas') //true
 console.log('10' == '10') //true
 console.log(10 == '10') //true
 
-//Triguba lygybė (strictly qual ===): pirmiausiai tikrina ar sutampa duomenų tipai, o tada tikrina reikšmes.
+
+//Triguba lygybė (strictly equal ===): pirmiausiai tikrina ar sutampa duomenų tipai, o tada tikrina reikšmes.
 console.log(10 === 10) //true
 console.log('vienas' === 'vienas') //true
 console.log('10' === '10') //true
 console.log(10 === '10') //false
+
 
 console.log(10 > 10) //false
 console.log(10 < 10) //false
@@ -130,14 +145,16 @@ console.log(10 >= 10) //true
 console.log(10 <= 10) //true
 
 
-console.log(10 == 10)
-console.log(10 != 10)
+console.log(10 == 10) //true
+console.log(10 != 10) //false - reiskia "nelygu" dvigubos nelygybes atveju
 
-console.log(10 === 10)
-console.log(10 !== 10)
+console.log(10 === 10) //true
+console.log(10 !== 10) //false - reiskia "nelygu" trigubos nelygybes atveju
 
 console.log(true)
-console.log(!true) //sauktukas yra priesingybe tad gaunasi false
+console.log(!true) //sauktukas yra priesingybe tad gaunasi false. Priesinga reiksme.
+console.log(!!true)
+
 
 // IF, ELSE, IF, ELSE
 
@@ -157,8 +174,8 @@ if (light === 'green') {
     console.log('sugedo')
 }
 
-let originalWord = 'TREE'
-let word = originalWord.toLocaleLowerCase()
+let originalWord = 'tree'
+let word = originalWord.toLowerCase()
 console.log(word)
 // console.log(word[0])
 // console.log(word[1])
@@ -166,10 +183,51 @@ console.log(word)
 // console.log(word[3])
 
 let firstLetter = word[0]
+let thirdLetter = word[2]
 
-if (word[0] === 't') {
-    console.log('Zodis ${word} prasideda raide t') } else {
-}console.log('Zodis neprasideda raite t')
+console.log(thirdLetter)
+
+// AND operator - &&
+
+
+//zodis - tips
+// console.log(firstLetter === 't' && thirdLetter === 'p')
+// console.log('t' === 't' && 'p' === 'p')
+// console.log(true && true)
+// console.log(true)
+
+//zodis - tree
+// console.log(firstLetter === 't' && thirdLetter === 'p')
+// console.log('t' === 't' && 'e' === 'p')
+// console.log(true && false)
+// console.log(false)
+
+
+if (firstLetter === 't' && thirdLetter === 'p') {
+    console.log(`Zodis ${word} prasideda raide t ir trecia raide yra p`) 
+} else {
+console.log(`Zodis ${word} neprasideda raite t arba trecia raide nera p`)
+}
+
+// OR operator - || 
+
+//zodis - tips
+console.log(firstLetter === 't' || thirdLetter === 'p')
+console.log('t' === 't' || 'e' === 'p')
+console.log(true || false)
+console.log(true)
+
+//zodis - tree
+// console.log(firstLetter === 't' && thirdLetter === 'p')
+// console.log('t' === 't' && 'e' === 'p')
+// console.log(true && false)
+// console.log(false)
+
+if (firstLetter === 't' || firstLetter === 'h') {
+    console.log(`Zodis ${word} prasideda raide t arba raide h`) 
+} else {
+console.log(`Zodis ${word} neprasideda raite t arba h`)
+}
 
 
 // pabandom ne su stringais
@@ -189,13 +247,13 @@ if (personAge >17) {
 }
 
 if (personAge < 18) {
-    console.log('pirkti bilieta negalima')
+    console.log('pirkti bilieto negalima')
 } else {
     console.log('pirkti bilieta galima')
 }
 
 if (personAge <=17) {
-    console.log('pirkti bilieta negalima')
+    console.log('pirkti bilieto negalima')
 } else {
     console.log('pirkti bilieta galima')
 }
@@ -204,18 +262,44 @@ if (personAge <=17) {
 
 personAge = 17
 
-if (personAge <16) {
-    console.log('pirkti bilieta negalima')
-} else if (personAge >= 16 && personAge < 18) {
+// if (personAge < 16) {
+//     console.log('pirkti bilieto negalima')
+// }   else if (personAge >= 16 && personAge < 18) {
+//     console.log('Gali pirkti su tevu sutikimu')
+// }   else if (personAge >= 18) {
+//     console.log('pirkti bilieta galima')
+// }
+
+
+if (personAge < 16) {
+    console.log('pirkti bilieto negalima')
+}   else if (personAge < 18) {
     console.log('Gali pirkti su tevu sutikimu')
-} else if (personAge >=18) {
+}   else {
     console.log('pirkti bilieta galima')
 }
 
-//Nesting
-
-if (personAge >= 16) {
-    console.log('pirkti galima???')
-} else {
+if (personAge >=18) {
+    console.log ('pirkti bilieta gali')
+}   else if (personAge >= 16) {
+    console.log('pirkti galima su tevu sutikimu')
+}   else {
     console.log('Pirkti bilieto negali')
 }
+
+//Nesting
+personAge = 16
+
+if (personAge >= 16) {
+
+    if (personAge >= 18) {
+    console.log ('pirkti bilieta gali')
+    } else {
+    console.log('gali pirkti su tevu sutikimu')
+    }
+
+}   else {
+    console.log('Pirkti bilieto negali')
+}
+
+console.groupEnd()
